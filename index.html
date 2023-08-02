@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Перетаскивание и изменение местами картинок</title>
+  <style>
+    body{
+      background-image: url(path/2.jpg);
+      background-size: 100%;
+
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: ;
+      color: ;
+      
+    }
+
+    #grid>div {
+      border: rgb(239, 205, 247);
+      font-size: ;
+      padding: ;
+      text-align: center;
+
+    }
+     .but1 {
+      border: 1px solid brown;
+      border-radius: 25px;
+      background-color: rgb(245, 229, 223);
+      box-shadow:
+        0 1px 4px rgba(99, 11, 11, 0.8),
+        -53px 0 50px -23px rgba(106, 16, 16, 0.8),
+        53px 0 50px -23px rgba(112, 12, 12, 0.8),
+        0 0 40px rgba(107, 14, 14, 0.5) inset;
+      margin-left: 40%;
+      margin-right: 40%;
+      width: 20%;
+      height: 70px;
+      color: rgb(28, 3, 3);
+      
+      font-size: 27px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .image-container {
+      display: inline-block;
+      margin: 10px;
+      cursor: move;
+      user-select: none; /* Отключение выделения текста */
+    }
+    img {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+  <!-- Подключение SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+
+<div id="grid">
+  <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image1">
+    <img src="path/1.png" alt="Image 1">
+  </div>
+  
+  <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image2">
+    <img src="path/3.png" alt="Image 2">
+  </div>
+  
+  <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image3">
+    <img src="path/8.png" alt="Image 3">
+  </div>
+   
+  
+</div>
+
+<button class="but1" onclick="checkOrder()">Проверить расположение</button>
+
+<script>
+let touchElement = null;
+
+function drag(event) {
+  event.dataTransfer.setData('text/plain', event.target.id);
+}
+
+function touchStart(event) {
+  touchElement = event.currentTarget;
+  // Устанавливаем атрибут для плавного перетаскивания на сенсорных устройствах
+  touchElement.style.zIndex = 1000;
+}
+
+function touchMove(event) {
+  if (touchElement) {
+    event.preventDefault();
+    const touch = event.touches[0];
+    touchElement.style.left = touch.clientX + 'px';
+    touchElement.style.top = touch.clientY + 'px';
+  }
+}
+
+function touchEnd(event) {
+  const draggedElementId = touchElement.id;
+  const draggedElement = document.getElementById(draggedElementId);
+  const dropTarget = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY).closest('.image-container');
+
+  if (dropTarget && dropTarget !== draggedElement) {
+    const tempContainer = document.createElement('div');
+    dropTarget.parentNode.insertBefore(tempContainer, dropTarget);
+    draggedElement.parentNode.insertBefore(dropTarget, draggedElement);
+    tempContainer.parentNode.insertBefore(draggedElement, tempContainer);
+    tempContainer.remove();
+  }
+
+  // Восстанавливаем стандартный атрибут
+  touchElement.style.zIndex = '';
+  touchElement = null;
+}
+
+document.addEventListener('dragover', function(event) {
+  event.preventDefault();
+});
+
+document.addEventListener('drop', function(event) {
+  event.preventDefault();
+  const draggedElementId = event.dataTransfer.getData('text/plain');
+  const draggedElement = document.getElementById(draggedElementId);
+  const dropTarget = event.target.closest('.image-container');
+
+  if (dropTarget && dropTarget !== draggedElement) {
+    const tempContainer = document.createElement('div');
+    dropTarget.parentNode.insertBefore(tempContainer, dropTarget);
+    draggedElement.parentNode.insertBefore(dropTarget, draggedElement);
+    tempContainer.parentNode.insertBefore(draggedElement, tempContainer);
+    tempContainer.remove();
+  }
+});
+
+function checkOrder() {
+  const imageContainers = document.querySelectorAll('.image-container');
+  const orderedImages = Array.from(imageContainers).map(container => container.querySelector('img').alt);
+
+  const correctOrder = ['Image 3','Image 2', 'Image 1']; // Здесь укажите правильный порядок изображений
+
+  if (JSON.stringify(orderedImages) === JSON.stringify(correctOrder)) {
+    showSuccessNotification();
+  } else {
+    showErrorNotification();
+  }
+}
+
+function showSuccessNotification() {
+  Swal.fire({
+    icon: 'info',
+    iconHtml:'👌',
+    allowEscapeKey:false,
+    allowOutsideClick:false,
+    backdrop: `
+    rgb(66,48,88,0.8)
+    url("/images/nyan-cat.gif")
+    left top
+    no-repeat
+  `,
+    title: '<b style="color:rgb(65,7,124);"> Отлично Любимая !</b>',
+    html: '<b style="color:rgb(124,7,73);"> Готова дальше?😊!</b>',
+  })
+  .then((result) => {
+    if (result.isConfirmed) {
+      // Переход на другую страницу после нажатия "Да"
+      window.location.href = '1page.html';
+    }
+  });
+}
+
+function showErrorNotification() {
+  Swal.fire({
+        icon: 'error',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        title: '<b style="color:red"> Ошибка!</b>',
+        html: '<b style="color:rgba(66, 14, 14, 0.5);" >Расположи фотографии в правильном порядке !</b>',
+      });
+}
+function showTaskExplanation() {
+  Swal.fire({
+        icon: 'warning',
+        iconHtml: '🙏',
+        title: '<b style="color:darkolivegreen;"> Ксюша </b>',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        imageUrl: 'path/8.png',
+        imageWidth: 200,
+        imageHeight: 200,
+        backdrop: `
+    rgb(69,96,115,0.8)
+    url("/images/nyan-cat.gif")
+    left top
+    no-repeat
+  `,
+        html: '<b style="color:olive;">Расположи фотографии в правильном порядке, чтобы получить правильную последовательность. Попробуй перетаскивать фотографии, чтобы изменить их порядок.</b>',
+        
+    onClose: () => {
+      startGame(); // Начинаем игру после закрытия уведомления
+    }
+  });
+}
+
+// Показываем уведомление с пояснением задачи при загрузке страницы
+showTaskExplanation();
+</script>
+
+</body>
+</html>

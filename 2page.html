@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Перетаскивание</title>
+  <style>
+    body{
+      background-image: url(path/5.jpg);
+    }
+    .but1 {
+      border: 1px solid brown;
+      border-radius: 25px;
+      background-color: rgb(245, 229, 223);
+      box-shadow:
+        0 1px 4px rgba(99, 11, 11, 0.8),
+        -53px 0 50px -23px rgba(106, 16, 16, 0.8),
+        53px 0 50px -23px rgba(112, 12, 12, 0.8),
+        0 0 40px rgba(107, 14, 14, 0.5) inset;
+      margin-left: 40%;
+      margin-right: 40%;
+      width: 20%;
+      height: 40px;
+      color: rgb(28, 3, 3);
+      margin-top: 1%;
+      font-size: 20px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    #grid {
+      border: 1px solid red;
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-gap: ;
+      color: ;
+    }
+
+    #grid>div {
+      border: rgb(239, 205, 247);
+      font-size: ;
+      padding: ;
+      background: gold;
+      text-align: center;
+    }
+
+    div {
+      display: ;
+      background-color: ;
+    }
+
+    .image-container {
+      display: block;
+      width: auto;
+      height: auto;
+
+      margin: ;
+      cursor: move;
+      user-select: none;
+    }
+
+    img {
+      border: ;
+      border-color: ;
+      width: 100%;
+      height: 100%;
+    }
+
+    video {
+      border: 2px solid darkred;
+      box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.3),
+        -43px 0 40px -23px rgba(126, 76, 76, 0.8),
+        43px 0 40px -23px rgba(126, 76, 76, 0.8),
+        0 0 40px rgba(0, 0, 0, 0.1) inset;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 80%;
+      height: 70%;
+      z-index: 200;
+    }
+  </style>
+  <!-- Подключение SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+
+  <div id="grid">
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image1">
+      <img src="path/your/image1.jpg" alt="Image 1">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image2">
+      <img src="path/your/image2.jpg" alt="Image 2">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image3">
+      <img src="path/your/image3.jpg" alt="Image 3">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image4">
+      <img src="path/your/image4.jpg" alt="Image 4">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image5">
+      <img src="path/your/image5.jpg" alt="Image 5">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image6">
+      <img src="path/your/image6.jpg" alt="Image 6">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image7">
+      <img src="path/your/image7.jpg" alt="Image 7">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image8">
+      <img src="path/your/image8.jpg" alt="Image 8">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image9">
+      <img src="path/your/image9.jpg" alt="Image 9">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image10">
+      <img src="path/your/image10.jpg" alt="Image 10">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image11">
+      <img src="path/your/image11.jpg" alt="Image 11">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image12">
+      <img src="path/your/image12.jpg" alt="Image 12">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image13">
+      <img src="path/your/image13.jpg" alt="Image 13">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image14">
+      <img src="path/your/image14.jpg" alt="Image 14">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image15">
+      <img src="path/your/image15.jpg" alt="Image 15">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image16">
+      <img src="path/your/image16.jpg" alt="Image 16">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image17">
+      <img src="path/your/image17.jpg" alt="Image 17">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image18">
+      <img src="path/your/image18.jpg" alt="Image 18">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image19">
+      <img src="path/your/image19.jpg" alt="Image 19">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image20">
+      <img src="path/your/image20.jpg" alt="Image 20">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image21">
+      <img src="path/your/image21.jpg" alt="Image 21">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image22">
+      <img src="path/your/image22.jpg" alt="Image 22">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image23">
+      <img src="path/your/image23.jpg" alt="Image 23">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image24">
+      <img src="path/your/image24.jpg" alt="Image 24">
+    </div>
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image25">
+      <img src="path/your/image25.jpg" alt="Image 25">
+    </div>
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image26">
+      <img src="path/your/image26.jpg" alt="Image 26">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image27">
+      <img src="path/your/image27.jpg" alt="Image 27">
+    </div>
+
+    <div class="image-container" draggable="true" ondragstart="drag(event)" ontouchstart="touchStart(event)"
+      ontouchmove="touchMove(event)" ontouchend="touchEnd(event)" id="image28">
+      <img src="path/your/image28.jpg" alt="Image 28">
+    </div>
+
+  </div>
+
+  <button class="but1" onclick="checkOrder()">Проверить</button>
+
+  <script>
+    let touchElement = null;
+    let videoOpened = false; // Флаг для контроля состояния видео
+
+    function drag(event) {
+      event.dataTransfer.setData('text/plain', event.target.id);
+    }
+
+    function touchStart(event) {
+      touchElement = event.currentTarget;
+      touchElement.style.zIndex = 1000;
+    }
+
+    function touchMove(event) {
+      if (touchElement) {
+        event.preventDefault();
+        const touch = event.touches[0];
+        touchElement.style.left = touch.clientX + 'px';
+        touchElement.style.top = touch.clientY + 'px';
+      }
+    }
+
+    function touchEnd(event) {
+      const draggedElementId = touchElement.id;
+      const draggedElement = document.getElementById(draggedElementId);
+      const dropTarget = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY).closest('.image-container');
+
+      if (dropTarget && dropTarget !== draggedElement) {
+        const tempContainer = document.createElement('div');
+        dropTarget.parentNode.insertBefore(tempContainer, dropTarget);
+        draggedElement.parentNode.insertBefore(dropTarget, draggedElement);
+        tempContainer.parentNode.insertBefore(draggedElement, tempContainer);
+        tempContainer.remove();
+      }
+
+      touchElement.style.zIndex = '';
+      touchElement = null;
+    }
+
+    document.addEventListener('dragover', function (event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener('drop', function (event) {
+      event.preventDefault();
+      const draggedElementId = event.dataTransfer.getData('text/plain');
+      const draggedElement = document.getElementById(draggedElementId);
+      const dropTarget = event.target.closest('.image-container');
+
+      if (dropTarget && dropTarget !== draggedElement) {
+        const tempContainer = document.createElement('div');
+        dropTarget.parentNode.insertBefore(tempContainer, dropTarget);
+        draggedElement.parentNode.insertBefore(dropTarget, draggedElement);
+        tempContainer.parentNode.insertBefore(draggedElement, tempContainer);
+        tempContainer.remove();
+      }
+    });
+
+    function playVideo() {
+      const videoContainer = document.getElementById('videoContainer');
+      const videoElement = document.getElementById('videoElement');
+
+      if (videoOpened) return; // Если видео уже открыто, не запускаем его повторно
+
+      // Устанавливаем флаг в true при открытии видео
+      videoOpened = true;
+
+      videoContainer.style.display = 'block'; // Показываем контейнер с видео
+
+      // Добавляем обработчик события "ended", который вызывается после завершения видео
+      videoElement.addEventListener('ended', () => {
+        Swal.fire({
+          icon: 'info',
+          iconHtml: '😘',
+          title: '<b style="color:rgb(22,70,74);"> Люблю тебя Ксюня </b>',
+          html: '<b style="color:rgb(4,113,123);"> Очень жду нашей встречи 🙏 </b>' +
+            '<h6 style="color:rgb(33,39,40);"> Можешь вернутся на начало )</h6>',
+          showCancelButton: true,
+          cancelButtonText: 'Нет',
+          confirmButtonText: 'Да',
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '1page.html'; // Замените 'URL_другой_страницы' на URL той страницы, на которую хотите перейти
+          }
+        });
+      });
+    }
+
+    function checkOrder() {
+      const imageContainers = document.querySelectorAll('.image-container');
+      const orderedImages = Array.from(imageContainers).map(container => container.querySelector('img').alt);
+
+      const correctOrder = ['Image 7', 'Image 16', 'Image 10', 'Image 14', 'Image 19', 'Image 11', 'Image 5', 'Image 24', 'Image 25', 'Image 8', 'Image 2', 'Image 20', 'Image 6', 'Image 22', 'Image 27', 'Image 23', 'Image 13', 'Image 3', 'Image 17', 'Image 28', 'Image 4', 'Image 26', 'Image 1', 'Image 18', 'Image 21', 'Image 15', 'Image 9', 'Image 12']; // Здесь укажите правильный порядок изображений
+
+      if (JSON.stringify(orderedImages) === JSON.stringify(correctOrder)) {
+        showSuccessNotification();
+      } else {
+        showErrorNotification();
+      }
+    }
+
+    function showSuccessNotification() {
+      Swal.fire({
+        icon: 'success',
+        iconHtml: '🥰',
+        title: '<b style="color:red">Умничка 😘</b>',
+        showCancelButton: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        confirmButtonText: 'Посмотреть видео',
+        cancelButtonText: 'Остаться на этой странице',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          playVideo();
+        }
+      });
+    }
+
+    function showErrorNotification() {
+      Swal.fire({
+        icon: 'error',
+        title: '<b style="color:red;"> Ошибка!</b>',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        html: '<b style="color:brown;"> Ксюня перетащи их чтоб фотографии были в правильном порядке </b>',
+      });
+    }
+
+    function showTaskExplanation() {
+      Swal.fire({
+        icon: 'warning',
+        iconHtml: '🌼',
+        title: '<b style="color:darkolivegreen;"> Ксюша </b>',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        imageUrl: 'path/1.png',
+        imageWidth: 200,
+        imageHeight: 200,
+        backdrop: `
+    rgb(65,36,2,0.8)
+    url("/images/nyan-cat.gif")
+    left top
+    no-repeat
+  `,
+        html: '<b style="color:olive;">Расположи фотографии в правильном порядке, чтобы получить правильную последовательность. Попробуй перетаскивать фотографии, чтобы изменить их порядок.</b>',
+        onClose: () => {
+          // Начинаем игру после закрытия уведомления
+          startGame();
+        }
+      });
+    }
+
+    // Показываем уведомление с пояснением задачи при загрузке страницы
+    showTaskExplanation();
+  </script>
+  <div id="videoContainer" style="display:none;">
+    <video id="videoElement" controls>
+      <!-- Замените 'path/to/your/video.mp4' на URL видео, которое вы хотите запустить -->
+      <source src="path/your/video.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+  </div>
+
+</body>
+
+</html>
